@@ -12,6 +12,7 @@ export default function TimerWrapper() {
     const [hours, setHours] = useState(0)
     const [minutes, setMinutes] = useState(0)
     const [seconds, setSeconds] = useState(0)
+    const [milliseconds, setMilliseconds] = useState(0)
 
     function startTime(){
         setIsPaused(false);
@@ -32,6 +33,7 @@ export default function TimerWrapper() {
         setMinutes(0);
         setHours(0);
         setSeconds(0);
+        setMilliseconds(0);
     }
 
     useEffect( ()=>{
@@ -39,7 +41,13 @@ export default function TimerWrapper() {
         const timerInterval = setInterval( ()=>{
     
             if(isPaused === false){
-                setSeconds(seconds+1)
+                setMilliseconds(milliseconds+1)
+
+                    if (milliseconds > 100){
+                        setMilliseconds(0)
+                        setSeconds(seconds+1)
+                        
+                    }
     
                     if (seconds > 59){
                         setSeconds(0)
@@ -62,7 +70,7 @@ export default function TimerWrapper() {
     
             }
     
-        },1)
+        },10)
 
         return (()=> clearInterval(timerInterval))
     })
@@ -71,7 +79,7 @@ export default function TimerWrapper() {
 
     return (
       <div>
-        <Time hours={hours} minutes={minutes} seconds={seconds} />
+        <Time hours={hours} minutes={minutes} seconds={seconds} milliseconds={milliseconds} />
         <Buttons isDisabled={isDisabled} onStartTime={startTime} onPauseTime={pauseTime} onStopTime={stopTime} onResetTime={resetTime} />
       </div>
     );
