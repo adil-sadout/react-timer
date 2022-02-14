@@ -37,48 +37,36 @@ export default function TimerWrapper() {
     }
 
     useEffect( ()=>{
-
         const timerInterval = setInterval( ()=>{
-    
             if(isPaused === false){
                 setMilliseconds(milliseconds+1)
 
                     if (milliseconds > 100){
-                        setMilliseconds(0)
-                        setSeconds(seconds+1)
-                        
+                        setMilliseconds(0);
+                        setSeconds(seconds+1);
                     }
-    
                     if (seconds > 59){
-                        setSeconds(0)
-                        setMinutes(minutes+1)
-                        
+                        setSeconds(0);
+                        setMinutes(minutes+1);
                     }
-    
                     if (minutes > 59){
-                        setMinutes(0)
-                        setHours(hours+1)
-                        
+                        setMinutes(0);
+                        setHours(hours+1);
                     }
-    
                     if (hours > 23){
                         setHours(0);
                         resetTime();
-                        alert("24 hours has passed, please go outside")
+                        alert("24 hours has passed, please go outside");
                     }
-
-    
             }
-    
         },10)
-
         return (()=> clearInterval(timerInterval))
     })
 
 
 
     return (
-      <div>
+      <div className="container">
         <Time hours={hours} minutes={minutes} seconds={seconds} milliseconds={milliseconds} />
         <Buttons isDisabled={isDisabled} onStartTime={startTime} onPauseTime={pauseTime} onStopTime={stopTime} onResetTime={resetTime} />
       </div>

@@ -1,22 +1,19 @@
 
 export default function Buttons(props) {
 
-    const {isDisabled, onStartTime, onPauseTime, onStopTime, onResetTime} = props
+    const {isDisabled, onStartTime, onPauseTime, onStopTime, onResetTime} = props;
 
     return (
-      <div>
-        <>
+      <div className=" text-center">
         {
-            (isDisabled === false) && <>
-                <button onClick={onStartTime} >Start</button>
-                <button onClick={onPauseTime} >Pause</button>
-                <button onClick={onStopTime} >Stop</button>
-            
+            (isDisabled === false) &&
+            <>
+                <button className="btn btn-dark  mx-1" onClick={onStartTime} >Start</button>
+                <button className="btn btn-dark mx-1" onClick={onPauseTime} >Pause</button>
+                <button className="btn btn-dark mx-1" onClick={onStopTime} >Stop</button>
             </>
         }
-        </>
-        
-        <button onClick={onResetTime} >Reset</button>
+        <button className="btn btn-dark mx-1" onClick={onResetTime} >Reset</button>
       </div>
     );
   }
